@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#13253b">
+  <meta name="description" content="Two-way ISL communication app prototype">
+  <title>Bridge - ISL communication prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Bridge home">
+      <span class="brand-mark" aria-hidden="true">B</span>
+      <span>bridge<span class="brand-light"> / ISL</span></span>
+    </a>
+    <div class="top-actions">
+      <span class="prototype-badge"><span class="dot"></span> Prototype mode</span>
+      <button class="help-button" id="aboutButton" type="button">About this demo</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <p class="eyebrow">TWO-WAY COMMUNICATION</p>
+      <h1>Make room for<br><span>every conversation.</span></h1>
+      <p class="intro-copy">Choose a saved ISL sign by name and play its captured motion on the Unity avatar. Browser camera preview is available for future recognition work.</p>
+    </section>
+
+    <div class="notice" role="status">
+      <span class="notice-icon" aria-hidden="true">i</span>
+      <p><strong>Prototype status:</strong> Unity WebGL avatar is integrated. Choose a sign from the list or type its name to animate the avatar in real-time.</p>
+      <button class="notice-dismiss" id="dismissNotice" type="button" aria-label="Dismiss notice">×</button>
+    </div>
+
+    <section class="workspace" aria-label="Communication workspace">
+      <article class="card input-card">
+        <div class="card-heading">
+          <div>
+            <span class="step-label">DIRECTION 01</span>
+            <h2>Speak or type</h2>
+            <p>For a hearing person communicating with an ISL signer.</p>
+          </div>
+          <span class="round-icon" aria-hidden="true">Aa</span>
+        </div>
+
+        <label for="messageInput">Sign name or message</label>
+        <textarea id="messageInput" rows="3" placeholder="Enter one saved sign name, for example hello..." maxlength="120"></textarea>
+        <div class="sign-selection">
+          <label for="signSelect">Choose a saved sign</label>
+          <div class="sign-selection-row">
+            <select id="signSelect" aria-label="Choose a saved sign" disabled>
+              <option value="">Loading signs…</option>
+            </select>
+            <button class="button button-primary" id="playSignButton" type="button" disabled>Play sign</button>
+          </div>
+          <p id="signStatus" class="small-note" aria-live="polite">Loading sign list…</p>
+        </div>
+        <div class="input-tools">
+          <span class="counter" id="charCount">0 / 500</span>
+          <div class="button-row">
+            <button class="button button-soft" id="listenButton" type="button"><span aria-hidden="true">▶</span> Listen</button>
+            <button class="button button-soft" id="micButton" type="button"><span aria-hidden="true">●</span> Use voice</button>
+          </div>
+        </div>
+        <button class="button button-primary full-button" id="sendButton" type="button">Play the sign from this text <span aria-hidden="true">→</span></button>
+        <p class="small-note" id="speechStatus" aria-live="polite">Voice input availability depends on your browser. Playback supports one saved sign at a time.</p>
+      </article>
+
+      <article class="card avatar-card" id="avatarCard">
+        <div class="card-heading">
+          <div>
+            <span class="step-label">ISL OUTPUT</span>
+            <h2>Avatar sign display</h2>
+            <p id="avatarMessage">Your message will appear here.</p>
+          </div>
+          <span class="live-tag"><span class="dot"></span> Preview</span>
+        </div>
+        <div class="avatar-stage" aria-label="Unity avatar preview area">
+          <div class="avatar-silhouette" id="avatarPlaceholder" aria-hidden="true">
+            <div class="avatar-head"><span class="avatar-eye left"></span><span class="avatar-eye right"></span><span class="avatar-smile"></span></div>
+            <div class="avatar-neck"></div>
+            <div class="avatar-body"></div>
+            <div class="avatar-arm arm-left"><span></span></div>
+            <div class="avatar-arm arm-right"><span></span></div>
+          </div>
+          <div class="unity-holder" id="unityHolder" hidden>
+            <canvas id="unity-canvas" tabindex="0" aria-label="ISL signing avatar"></canvas>
+            <div class="unity-loading" id="unityLoading">Starting Unity avatar…</div>
+          </div>
+          <div class="avatar-caption" id="avatarCaption">Avatar loading…</div>
+          <div class="motion-slot" id="motionSlot">Select a sign to play motion.</div>
+        </div>
+        <div class="clip-status"><span class="status-square"></span><span id="clipStatus">Ready to animate signed message.</span></div>
+        <div class="playback-controls">
+          <button class="button button-soft" id="replayButton" type="button" disabled>↻ Replay</button>
+          <label class="speed-control" for="speedControl">Speed <select id="speedControl" aria-label="Sign playback speed"><option>0.75×</option><option selected>1×</option><option>1.25×</option></select></label>
+        </div>
+      </article>
+
+      <article class="card camera-card">
+        <div class="card-heading">
+          <div>
+            <span class="step-label">DIRECTION 02</span>
+            <h2>Sign to text or voice</h2>
+            <p>For an ISL signer communicating with a hearing person.</p>
+          </div>
+          <span class="round-icon camera-icon" aria-hidden="true">◉</span>
+        </div>
+        <div class="camera-frame" id="cameraFrame">
+          <video id="cameraVideo" autoplay playsinline muted hidden></video>
+          <div class="camera-empty" id="cameraEmpty">
+            <span class="camera-symbol" aria-hidden="true">⌁</span>
+            <strong>Camera preview</strong>
+            <span>Your video stays in this browser in this demo.</span>
+          </div>
+          <span class="camera-label" id="cameraLabel">Camera off</span>
+        </div>
+        <div class="camera-actions">
+          <button class="button button-soft" id="cameraButton" type="button">Start camera</button>
+          <button class="button button-outline" id="sampleResultButton" type="button">Show demo transcript</button>
+        </div>
+        <label for="transcriptOutput">Recognized text</label>
+        <textarea id="transcriptOutput" rows="2" placeholder="A transcript would appear here after sign recognition." maxlength="300"></textarea>
+        <div class="output-actions">
+          <span class="simulated-label" id="transcriptStatus">Sign recognition is not connected</span>
+          <button class="button button-primary" id="speakResultButton" type="button">Read aloud</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="next-steps">
+      <div class="next-icon" aria-hidden="true">✳</div>
+      <div><h2>Built with the community</h2><p>Real signing depends on reviewed ISL content, signer consent and Deaf-led testing. The next step is a small, community-approved phrase set for one real service setting.</p></div>
+      <a href="../PROJECT_HANDOFF.md">Project architecture <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <footer><span>Bridge / ISL prototype</span><span>Prototype interface</span></footer>
+  </main>
+
+  <dialog id="aboutDialog" class="about-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form>
+    <p class="eyebrow">ABOUT THIS PROTOTYPE</p>
+    <h2>A conversation concept with real-time Unity avatar signing.</h2>
+    <p>This interface demonstrates text, browser speech input, speech output and camera preview. The sign selector maps saved sign names to MediaPipe landmark clips and sends the selected name to the Unity WebGL avatar.</p>
+    <form method="dialog"><button class="button button-primary">Got it</button></form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
