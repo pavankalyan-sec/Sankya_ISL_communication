@@ -1,5 +1,16 @@
 # Unity temporary / local cache
 /[Uu]nity/Build/*.map
+UnityProject/ISL_Translator/Library/
+UnityProject/ISL_Translator/Temp/
+UnityProject/ISL_Translator/Obj/
+UnityProject/ISL_Translator/Logs/
+UnityProject/ISL_Translator/UserSettings/
+UnityProject/ISL_Translator/Build/
+UnityProject/ISL_Translator/Builds/
+UnityProject/ISL_Translator/MemoryCaptures/
+UnityProject/ISL_Translator/Recordings/
+UnityProject/ISL_Translator/.vs/
+UnityProject/ISL_Translator/.vscode/
 .DS_Store
 Thumbs.db
 *.log
