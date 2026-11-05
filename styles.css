@@ -15,3 +15,43 @@
 .unity-loading[hidden]{display:none}
 .avatar-caption,.motion-slot{z-index:2;background:rgba(245,255,253,.78);padding:4px 6px;border-radius:5px}
 
+/* Diwali palette: warm sand, diya gold, and deep plum. */
+:root{color:#392b38;background:#fff8ec;--navy:#351235;--teal:#a54f31;--mint:#f8ead5;--coral:#c45a31;--muted:#806d78;--line:#ead8bd;--white:#f7eee0;--shadow:0 16px 40px rgba(80,40,45,.09)}
+body{background:radial-gradient(ellipse at 8% 20%,rgba(247,195,116,.22),transparent 32%),radial-gradient(ellipse at 92% 34%,rgba(195,105,64,.12),transparent 29%),#fff8ec}
+.topbar{background:linear-gradient(105deg,#351235 0%,#512047 56%,#713d37 100%);border-bottom:1px solid rgba(255,205,123,.55)}
+.brand-mark{background:linear-gradient(145deg,#ffe2a0,#e99a48);box-shadow:0 0 18px rgba(255,198,103,.32)}
+.brand-light{color:#f0d7bc}
+.prototype-badge{border-color:rgba(255,218,163,.4);color:#ffe6c0}
+.dot,.live-tag .dot{background:#f5bd61}
+.eyebrow,.step-label{color:#a54f31}
+h1{color:#351235}
+h1 span{color:#a54f31}
+.card{border-color:#eadcc7;background:#f7eee0;box-shadow:0 16px 40px rgba(80,40,45,.09)}
+.card label{color:#594354}
+.round-icon{background:#f8ead5;color:#9c452e}
+textarea{background:#fffaf2;border-color:#e7d8c3;color:#392b38}
+textarea:focus{border-color:#c77a3e;box-shadow:0 0 0 3px rgba(199,122,62,.14)}
+.button-primary{background:linear-gradient(135deg,#4a1941,#351235);color:#fff8ec}
+.button-primary:hover{background:linear-gradient(135deg,#672c4d,#4a1941)}
+.button-soft{background:#f7ead8;color:#63454d;border-color:#edddc6}
+.button-soft:hover{background:#f2dfc4}
+.button-outline{background:#fffaf2;border-color:#e6d3b6;color:#674b52}
+.notice{background:#fff1d5;border-color:#edd19a;color:#70512b}
+.notice-icon{background:#f1d294;color:#704317}
+.notice-dismiss,.dialog-close{color:#80522f}
+.avatar-card{background:#f3e6d2;border-color:#ead8b8}
+.avatar-stage{border-color:#ead2aa;background:radial-gradient(circle at 50% 20%,#fff8e7,#f8e9d0 68%,#f0dcbf)}
+.avatar-caption,.motion-slot{background:rgba(255,248,232,.88);color:#684a4c}
+.playback-controls{border-top-color:#eadcc7}
+select{background:#fffaf2;border-color:#e5d4b8;color:#51384a}
+.camera-frame{background:#351235}
+.camera-symbol{color:#f2bd68}
+.next-steps{background:#f7eee0;border-color:#eadcc7}
+.next-icon{background:#fff0d5;color:#a54f31}
+.next-steps a{color:#a54f31}
+footer{color:#947f79}
+.about-dialog{background:#fffaf2;color:#493b49}
+.about-dialog h2{color:#351235}
+.about-dialog p:not(.eyebrow){color:#756274}
+@media(prefers-reduced-motion:no-preference){.brand-mark{animation:diya-glow 3.2s ease-in-out infinite alternate}@keyframes diya-glow{from{box-shadow:0 0 9px rgba(255,198,103,.22)}to{box-shadow:0 0 20px rgba(255,198,103,.55)}}}
+

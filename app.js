@@ -12,10 +12,17 @@ let unityInstance = null;
 // Maps directly to StreamingAssets/signs/<id>.json
 // =============================================================
 const AVAILABLE_SIGNS = [
+  { id: 'app',        label: 'App' },
+  { id: 'apple',      label: 'Apple' },
+  { id: 'bag',        label: 'Bag' },
+  { id: 'editor',     label: 'Editor' },
+  { id: 'effort',     label: 'Effort' },
   { id: 'hello',  label: 'Hello' },
-  { id: 'apple',  label: 'Apple' },
-  { id: 'effort', label: 'Effort' },
-  { id: 'love',   label: 'Love' }
+  { id: 'independent',label: 'Independent' },
+  { id: 'love',       label: 'Love' },
+  { id: 'no',         label: 'No' },
+  { id: 'passport',   label: 'Passport' },
+  { id: 't-shirt',    label: 'T-Shirt' }
 ];
 
 // =============================================================
